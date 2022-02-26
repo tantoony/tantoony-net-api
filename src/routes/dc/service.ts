@@ -8,14 +8,16 @@ export class DcService {
     const api = new URLSearchParams();
     api.append("client_id", process.env.client_id);
     api.append("client_secret", process.env.client_secret);
-    api.append("grant_type", "authorization_code");
-    api.append("redirect_uri", "http://localhost:3000/dc/basic");
+    api.append("grant_type", "authorization_code");;
+    api.append("scope", "rpc");
+    api.append("redirect_uri", "http://localhost:3000/dc/basic")
     api.append("code", token);
     const resp = await fetch("https://discord.com/api/oauth2/token", {
       method: "POST",
       body: api
     });
     const response: Record<any, any> = await resp.json();
+    console.log(resp);
     const req = await fetch("https://discord.com/api/users/@me", {
       method: "GET",
       headers: {
