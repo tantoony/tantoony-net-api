@@ -8,12 +8,20 @@ export class DispService {
     constructor(@InjectModel("cardsets") private cardModel: Model<CardDoc>) {
     }
 
-    async softCreate({ name, tags, stars }) {
+    async show(): Promise<CardDoc[]> {
+        const myCard = await this.cardModel.find();
+        return myCard;
+    }
+
+    async softCreate({ name, tags, stars }): Promise<Record<string, string>> {
         await this.cardModel.create({
             name,
             tags: tags.split('.'),
             stars
         });
+        return {
+            "Process": "Done"
+        }
     }
 
 }
