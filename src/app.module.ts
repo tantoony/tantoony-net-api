@@ -4,15 +4,17 @@ import { AppService } from './app.service';
 import { MongooseModule } from "@nestjs/mongoose";
 import { DispModule } from "./routes/cardset/module";
 import { DcModule } from "./routes/dc/module";
+import { PortModule } from "./routes/port/module";
 @Module({
     imports: [
-        MongooseModule.forRoot('mongodb://45.146.161.197:27017/nest', {
+        MongooseModule.forRoot('mongodb://127.0.0.1:27017/nest', {
             user: "Tantoony",
             pass: "kankabengüneşeyanıyom",
             authSource: "admin"
         }),
         DispModule,
-        DcModule
+        DcModule,
+        PortModule
     ],
     controllers: [AppController],
     providers: [AppService],

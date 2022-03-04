@@ -28,5 +28,7 @@ export class Card {
     projects: Project[];
     @Prop()
     tags: string[];
+    @Prop()
+    suffix: string;
 }
 export const CardSchema = SchemaFactory.createForClass(Card);
