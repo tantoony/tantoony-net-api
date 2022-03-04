@@ -34,8 +34,57 @@ export class DispService {
             suffix
         });
         return {
-            "Process": "Done"
+            "status": "success"
         }
     }
+
+    getItems(query): CardDoc[] {
+        let resp: CardDoc[] = [];
+        Object.keys(query).map((key) => {
+            this.cardModel.find({ [key]: query[key] }, (error, cards) => {
+                if (error) {
+                    console.log(error);
+                    return {
+                        status: "Failed",
+                        message: error.message,
+                        error: error.name
+                    }
+                } else resp = cards;
+            });
+        });
+        return resp;
+    }
+
+    delItem(query): CardDoc | Record<string, string> {
+        if (!query["id"]) return {
+            "status": "failiture"
+        }
+        let model: CardDoc;
+        this.cardModel.findOne({ _id: query["id"] }, {}, {}, (error, card) => {
+            if (error) {
+                console.log(error);
+                return {
+                    status: "Failed",
+                    message: error.message,
+                    error: error.name
+                }
+            } else return card;
+        }).exec().then(async (card) => {
+            if (query.toArray().length == 1) {
+                await card.delete()
+                return card;
+            } else if (query["type"]) {
+                switch (query["type"]) {
+                    case "tag":
+                        await card.update({ $pull: { tags: query["type"]["tags"] } });
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        });
+    }
+
 
 }
