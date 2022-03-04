@@ -13,11 +13,13 @@ export class DispService {
         return myCard;
     }
 
-    async softCreate({ name, tags, stars }): Promise<Record<string, string>> {
+    async softCreate({ name, tags, stars, suffix }): Promise<Record<string, string>> {
+        if (!suffix) suffix = name;
         await this.cardModel.create({
             name,
             tags: tags.split('.'),
-            stars
+            stars,
+            suffix
         });
         return {
             "Process": "Done"
