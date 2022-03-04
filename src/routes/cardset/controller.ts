@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Query, ValidationPipe } from '@nestjs/common';
+import { Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { DispService } from './service';
-import { CardDoc } from "../../typing/declaration";
+//import { CardDoc } from "../../typing/declaration";
 
 @Controller('cardset')
 export class DispController {
@@ -21,5 +21,21 @@ export class DispController {
     async update(@Query() query): Promise<Record<string, string>> {
         return await this.service.softCreate(query);
     }
+
+    @Delete()
+    async delete(@Query() query: {
+        id: string
+    }): Promise<Record<string, string>> {
+
+        return {
+            "Status": "OK"
+        }
+    }
+
+    @Patch()
+    show(@Query() query) {
+        return this.service.getItems(query.toJSON())
+    }
+
 
 }
