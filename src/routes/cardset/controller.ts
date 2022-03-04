@@ -8,7 +8,12 @@ export class DispController {
     }
 
     @Get()
-    async basic(): Promise<CardDoc[]> {
+    async basic(): Promise<{
+        name: string,
+        tags: string[],
+        stars: number,
+        suffix: string | null
+    }[]> {
         return await this.service.show();
     }
 
