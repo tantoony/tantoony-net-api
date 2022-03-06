@@ -18,7 +18,7 @@ route.map
 # Tests
 /coverage
 /.nyc_output
-
+.idea
 # IDEs and editors
 /.idea
 .project
