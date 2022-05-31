@@ -32,9 +32,9 @@ export class DispController {
       Status: 'OK',
     };
   }
-
+/*
   @Patch()
   show(@Query() query) {
     return this.service.getItems(query.toJSON());
-  }
+  }*/
 }
