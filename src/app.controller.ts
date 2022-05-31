@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  hello(): string {
+  hello(@Query() query: any): string {
     return this.appService.getHello();
   }
 }

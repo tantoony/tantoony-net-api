@@ -9,7 +9,7 @@ import { PortModule } from './routes/port/module';
   imports: [
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/nest', {
       user: 'Tantoony',
-      pass: 'c**sZ7DMhM&Dh5jU',
+      pass: 'dcggasg146',
       authSource: 'admin',
     }),
     DispModule,
