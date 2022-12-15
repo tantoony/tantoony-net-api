@@ -24,7 +24,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/mongoose": "^9.0.2",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-express": "^8.4.7",
     "@nestjs/platform-fastify": "^8.2.6",
     "dotenv": "^14.2.0",
     "fastify": "^3.27.0",
